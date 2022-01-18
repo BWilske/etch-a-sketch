@@ -1,16 +1,11 @@
-const gridEl = document.getElementById("grid")
 
 //holds color functions
 const mode = {
-    "greyscale": function() {
-        this.style.backgroundColor = greyscaleColors[colorSelector]
-        colorSelector +=1
-            if (colorSelector === greyscaleColors.length) {
-            colorSelector = 0
-        }
+    "whiteToBlack": function(){
+        this.style.backgroundColor = black
     },
-    "blackToWhite": null,
     "rainbowOrdered": function() {
+        
         const rainbowColors = ["blue", "green", "red", "yellow", "purple", "orange", "teal",]
         this.style.backgroundColor = rainbowColors[colorSelector]
         colorSelector +=1
@@ -23,17 +18,20 @@ const mode = {
     }
 }
 // begin program
-
-let colorMode = mode.rainbowOrdered
-let tiles = 10
+const gridEl = document.getElementById("grid")
 let colorSelector = 0
+let colorMode = mode.rainbowOrdered
+let tiles = 100
+
 gridGenerator(tiles)
 
 // end program
 
+//helper functions
 
 //generates rows and columns for grid
 function gridGenerator(tiles) {
+    colorSelector= 0
     for (let i = 0; i<tiles; i++) {
         let newTr = document.createElement("tr")
         newTr.setAttribute("id", `row ${i}`)
@@ -49,11 +47,11 @@ function gridGenerator(tiles) {
     }
 }
 
-//helper functions
+// returnsrgb value in form rgb(xx,xx,xx)
 
 const rgbGen = () => {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
     return `rgb(${r},${g},${b})`
-}
+} 
